@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {addDoc, collection} from 'firebase/firestore'
-import {db,auth} from './firebase'
+import {db,auth} from '../database/firebase'
 import {useNavigate} from 'react-router-dom'
 function Post() {
     const [title,setTitle]=useState();
@@ -9,7 +9,7 @@ function Post() {
     const ref=collection(db,"blogs");
     function handleSubmit(){
         addDoc(ref,{title: title,content:content,user:{name: auth.currentUser.displayName,id: auth.currentUser.uid}});
-        nav('/bloghome/blog')
+        nav('/blogs/blog')
     }
   return (
         <div className=' flex items-center justify-center' >
